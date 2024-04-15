@@ -1,0 +1,48 @@
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-info,
+.social-links {
+  flex-basis: 45%; /* Adjust as needed */
+}
+
+.contact-info h3,
+.social-links h3 {
+  margin-top: 0;
+}
+
+.contact-info ul,
+.social-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info li,
+.social-links li {
+  margin-bottom: 10px;
+}
+
+
+  
+.social-links li {
+  margin-left: 10px;
+}
+
+.social-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}

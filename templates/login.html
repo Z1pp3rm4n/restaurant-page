@@ -6,12 +6,12 @@
 {% block body %}
 <div class="login-container">
     <h2>Login</h2>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <div class="notification is-danger">
-            {{ messages[0] }}
-        </div>
-    {% endif %}
+    {% with messages = get_flashed_messages(with_categories=true) %}    
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="message {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
     {% endwith %}
         
     <form method="POST" action="/login">
@@ -28,7 +28,10 @@
             <input type="checkbox" name="remember">
             Remember me
         </label>
-    </div>
+      </div>
+      <div id="signup-reminder">
+        Don't have an account? <a href="{{url_for('auth.signup')}}">Sign Up</a>
+      </div>
       <button type="submit">Login</button>
     </form>
   </div>

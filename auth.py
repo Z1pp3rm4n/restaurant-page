@@ -21,7 +21,7 @@ def signup_post():
 
     user = User.query.filter_by(email=email).first()
     if user:
-        flash('Email address already exists')
+        flash('Email address already exists', 'error')
         return redirect(url_for("auth.signup"))
 
     new_user = User(name=name, email=email, password=generate_password_hash(password, method='pbkdf2:sha256')) # type: ignore
@@ -29,7 +29,7 @@ def signup_post():
     try:
         db.session.add(new_user)
         db.session.commit()
-        return "Sign up successful" #TODO
+        return redirect(url_for("main.index"))#TODO
     except Exception as e:
             print(e)
             return "Issue signing up"
@@ -44,12 +44,12 @@ def login_post():
 
     # check if the user actually exists
     if not user or not check_password_hash(user.password, password):
-        flash('Please check your login details and try again.')
+        flash('Please check your login details and try again.', 'error')
         return redirect('/login') # if the user doesn't exist or password is wrong, reload the page
 
     # user has the right credentials
     login_user(user, remember=remember)
-    return "Login Successful" #TODO
+    return redirect(url_for("main.index"))
 
 @auth.route('/logout')
 @login_required

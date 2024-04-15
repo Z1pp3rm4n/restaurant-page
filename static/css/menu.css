@@ -1,0 +1,43 @@
+.menu {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.menu h1 {
+  text-align: center;
+}
+
+.menu-item {
+  margin-bottom: 30px;
+}
+
+.menu-item h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.menu-item ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-item li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.menu-item li:last-child {
+  border-bottom: none;
+}
+
+.dish-name {
+  flex-grow: 1;
+}
+
+.price {
+  font-weight: bold;
+}  

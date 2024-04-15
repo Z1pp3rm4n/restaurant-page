@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Menu - Poco Taco</title>
+{% endblock %}
+
+{% block body %}
+<div class="menu">
+    <h1>Menu</h1>
+    {% for dish_group in dish_groups %}
+    <div class="menu-item">
+        <h2>{{dish_group.name}}</h2>
+        <ul>
+            {% for dish in dish_group.dishes %}
+            <li>
+                <span class="dish-name">{{ dish.name }}</span>
+                <span class="price">${{dish.price}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+

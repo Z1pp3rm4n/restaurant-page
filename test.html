@@ -3,75 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Restaurant Name] - Order Online</title>
+    <title>Food Ordering Website</title>
     <style>
-        /* Add your CSS styles here */
+        /* Add some basic styling */
+        .menu-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .cart-item {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to [Restaurant Name]</h1>
-    </header>
+    <h1>Food Ordering Website</h1>
 
-    <main>
-        <section id="menu">
-            <h2>Menu</h2>
-            <ul>
-                <li>
-                    <h3>Appetizers</h3>
-                    <ul>
-                        <li>Garlic Bread - $6.99</li>
-                        <li>Caprese Salad - $8.99</li>
-                        <li>Soup of the Day - $5.99</li>
-                    </ul>
-                </li>
-                <li>
-                    <h3>Main Courses</h3>
-                    <ul>
-                        <li>Grilled Salmon - $18.99</li>
-                        <li>Chicken Alfredo - $15.99</li>
-                        <li>Vegetable Stir-Fry - $12.99</li>
-                    </ul>
-                </li>
-                <li>
-                    <h3>Desserts</h3>
-                    <ul>
-                        <li>New York Cheesecake - $7.99</li>
-                        <li>Chocolate Lava Cake - $8.99</li>
-                        <li>Fruit Sorbet - $6.99</li>
-                    </ul>
-                </li>
-                <li>
-                    <h3>Beverages</h3>
-                    <ul>
-                        <li>Soda (Coke, Sprite, Fanta) - $2.50</li>
-                        <li>Freshly Brewed Coffee - $3.50</li>
-                        <li>Iced Tea - $3.00</li>
-                    </ul>
-                </li>
-            </ul>
-        </section>
+    <h2>Menu</h2>
+    <div id="menu">
+        <!-- Menu items will be dynamically generated here -->
+    </div>
 
-        <section id="order">
-            <h2>Place Your Order</h2>
-            <form action="submit_order.php" method="post">
-                <label for="item">Select Item:</label>
-                <select id="item" name="item">
-                    <option value="garlic_bread">Garlic Bread</option>
-                    <option value="caprese_salad">Caprese Salad</option>
-                    <!-- Add options for other menu items -->
-                </select><br>
+    <h2>Shopping Cart</h2>
+    <div id="cart">
+        <!-- Cart items will be dynamically generated here -->
+    </div>
+    <p>Total: <span id="total">$0.00</span></p>
 
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" min="1" value="1"><br>
+    <button id="checkoutButton">Checkout</button>
 
-                <input type="submit" value="Add to Cart">
-            </form>
-        </section>
-    </main>
+    <h2>Checkout</h2>
+    <div id="checkout">
+        <!-- Checkout form will be dynamically generated here -->
+    </div>
 
-    <footer>
-        <p>Contact us: [Restaurant Phone Number] | [Restaurant Email Address]</p>
-    </footer>
+    <script>
+        // Sample menu items
+        var menuItems = [
+            { name: "Pizza", price: 10 },
+            { name: "Burger", price: 5 },
+            { name: "Salad", price: 8 },
+            // Add more menu items as needed
+        ];
+
+        var cart = {};
+        var total = 0;
+
+        // Function to display menu items
+        function displayMenu() {
+            var menuContainer = document.getElementById('menu');
+            menuItems.forEach(function(item) {
+                var menuItem = document.createElement('div');
+                menuItem.classList.add('menu-item');
+                menuItem.innerHTML = `
+                    <p>${item.name} - $${item.price}</p>
+                    <button onclick="addToCart('${item.name}', ${item.price})">Add to Cart</button>
+                `;
+                menuContainer.appendChild(menuItem);
+            });
+        }
+
+        // Function to add item to cart
+        function addToCart(name, price) {
+            if (name in cart) {
+                cart[name] += 1
+            } else {
+                cart[name] = 1
+            }
+            updateCart();
+        }
+
+        // Function to remove item from cart
+        function removeFromCart(name) {
+            delete cart[name]
+            // total -= removedItem.price;
+            updateCart();
+        }
+
+        // Function to update cart display
+        function updateCart() {
+            var cartContainer = document.getElementById('cart');
+            cartContainer.innerHTML = '';
+            cartArray = Object.entries(cart)
+            for ([name, count] of cartArray) {
+                console.log(name)
+                var cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.textContent = name + 'x ' + count;
+                var removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = function() {
+                    removeFromCart(name);
+                };
+                cartItem.appendChild(removeButton);
+                cartContainer.appendChild(cartItem);
+            };
+            document.getElementById('total').textContent = '$' + total.toFixed(2);
+        }
+
+        // Function to display checkout form
+        function displayCheckoutForm() {
+            console.log("displaying checkout")
+            var checkoutContainer = document.getElementById('checkout');
+            checkoutContainer.innerHTML = `
+                <form id="checkoutForm">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                    
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" required>
+                    
+                    <button type="submit">Place Order</button>
+                </form>
+            `;
+            document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var name = document.getElementById('name').value;
+                var email = document.getElementById('email').value;
+                var phone = document.getElementById('phone').value;
+                // You can send the order details to a server for processing here
+                alert("Order Placed!\n\nName: " + name + "\nEmail: " + email + "\nPhone: " + phone);
+                // Reset cart and total
+                cart = [];
+                total = 0;
+                updateCart();
+            });
+        }
+
+        // Initialize the webpage
+        displayMenu();
+        updateCart();
+        document.getElementById('checkoutButton').addEventListener('click', displayCheckoutForm );
+    </script>
 </body>
 </html>

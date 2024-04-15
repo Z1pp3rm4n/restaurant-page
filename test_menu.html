@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Menu</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.menu {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.menu h1 {
+  text-align: center;
+}
+
+.menu-item {
+  margin-bottom: 30px;
+}
+
+.menu-item h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.menu-item ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-item li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.menu-item li:last-child {
+  border-bottom: none;
+}
+
+.dish-name {
+  flex-grow: 1;
+}
+
+.price {
+  font-weight: bold;
+}
+
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <h1>Menu</h1>
+    <div class="menu-item">
+      <h2>Appetizers</h2>
+      <ul>
+        <li>
+          <span class="dish-name">Bruschetta</span>
+          <span class="price">$8.99</span>
+        </li>
+        <li>
+          <span class="dish-name">Caprese Salad</span>
+          <span class="price">$10.99</span>
+        </li>
+        <!-- Add more appetizers here -->
+      </ul>
+    </div>
+    <div class="menu-item">
+      <h2>Main Courses</h2>
+      <ul>
+        <li>
+          <span class="dish-name">Grilled Salmon</span>
+          <span class="price">$18.99</span>
+        </li>
+        <li>
+          <span class="dish-name">Chicken Alfredo</span>
+          <span class="price">$16.99</span>
+        </li>
+        <!-- Add more main courses here -->
+      </ul>
+    </div>
+    <!-- Add more sections as needed -->
+  </div>
+</body>
+</html>

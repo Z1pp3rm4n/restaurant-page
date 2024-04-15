@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, flash, redirect
 from flask_login import login_required, current_user
-from models import db
+from models import db, Reservation, Type
+from datetime import datetime
 
 main = Blueprint('main', __name__)
 
@@ -12,19 +13,26 @@ def index():
 def about():
     return render_template("about.html")
 
-@login_required
 @main.route('/profile')
+@login_required
 def profile():
     return current_user.name 
 
 
-@login_required
+@main.route('/menu')
+def menu():
+    dish_groups = Type.query.order_by(Type.name).all()
+    return render_template("menu.html", dish_groups=dish_groups)
+
+
+
 @main.route('/reservation')
+@login_required
 def reservation():
     return render_template('reservation.html')
 
-@login_required
 @main.route('/reservation', methods=["POST"])    
+@login_required
 def reservation_post():
     user_id = current_user.id
     num_people = int(request.form["num_people"])
@@ -34,7 +42,7 @@ def reservation_post():
     try:
         db.session.add(new_reservation)
         db.session.commit()
-        flash("Reservation successful")
+        flash("Reservation successful", 'success')
         return redirect('/reservation')
     except Exception as e:
         print(e)
