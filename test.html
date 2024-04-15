@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Restaurant Name] - Order Online</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to [Restaurant Name]</h1>
+    </header>
+
+    <main>
+        <section id="menu">
+            <h2>Menu</h2>
+            <ul>
+                <li>
+                    <h3>Appetizers</h3>
+                    <ul>
+                        <li>Garlic Bread - $6.99</li>
+                        <li>Caprese Salad - $8.99</li>
+                        <li>Soup of the Day - $5.99</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Main Courses</h3>
+                    <ul>
+                        <li>Grilled Salmon - $18.99</li>
+                        <li>Chicken Alfredo - $15.99</li>
+                        <li>Vegetable Stir-Fry - $12.99</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Desserts</h3>
+                    <ul>
+                        <li>New York Cheesecake - $7.99</li>
+                        <li>Chocolate Lava Cake - $8.99</li>
+                        <li>Fruit Sorbet - $6.99</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Beverages</h3>
+                    <ul>
+                        <li>Soda (Coke, Sprite, Fanta) - $2.50</li>
+                        <li>Freshly Brewed Coffee - $3.50</li>
+                        <li>Iced Tea - $3.00</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section id="order">
+            <h2>Place Your Order</h2>
+            <form action="submit_order.php" method="post">
+                <label for="item">Select Item:</label>
+                <select id="item" name="item">
+                    <option value="garlic_bread">Garlic Bread</option>
+                    <option value="caprese_salad">Caprese Salad</option>
+                    <!-- Add options for other menu items -->
+                </select><br>
+
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1"><br>
+
+                <input type="submit" value="Add to Cart">
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Contact us: [Restaurant Phone Number] | [Restaurant Email Address]</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<h1> Make a reservation</h1>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="notification is-success">
+        {{ messages[0] }}
+    </div>
+{% endif %}
+{% endwith %}
+
+<form action="/reservation" method="POST">
+    <label for="num_people">Number of People:</label><br>
+    <input type="number" id="num_people" name="num_people" min="1" max="10" required><br>
+    
+    <label for="date">Date:</label><br>
+    <input type="date" id="date" name="date" required onfocus="this.min=new Date().toISOString().split('T')[0]"><br>
+    
+    <label for="time">Time:</label><br>
+    <select id="timepicker" name="time" required onmousedown="if(this.options.length>8){this.size=8;}"  onchange='this.size=0;' onblur="this.size=0;">
+        <!-- Options will be added dynamically using JavaScript -->
+    </select>
+    
+    <input type="submit" value="Submit">
+</form>
+</div>
+
+<script>
+// Function to populate the dropdown with time options
+function populateTimePicker(minTime, maxTime, interval) {
+var select = document.getElementById("timepicker");
+
+// Clear previous options
+select.innerHTML = "";
+
+// Parse min and max times
+var minHour = parseInt(minTime.split(":")[0]);
+var minMinute = parseInt(minTime.split(":")[1]);
+var maxHour = parseInt(maxTime.split(":")[0]);
+var maxMinute = parseInt(maxTime.split(":")[1]);
+
+// Loop through the time range and add options
+for (var hour = minHour; hour <= maxHour; hour++) {
+    for (var minute = 0; minute < 60; minute += interval) {
+        // Check if within the range
+        if ((hour == minHour && minute < minMinute) || (hour == maxHour && minute > maxMinute)) {
+            continue;
+        }
+        // Format the time
+        var time = ("0" + hour).slice(-2) + ":" + ("0" + minute).slice(-2);
+        // Create option element
+        var option = document.createElement("option");
+        option.text = time;
+        option.value = time;
+        // Add option to select
+        select.add(option);
+    }
+}
+}
+
+// Call the function to populate the time picker
+populateTimePicker("12:00", "18:00", 15);
+</script>
+
+{% endblock %}
