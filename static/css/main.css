@@ -1,9 +1,13 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Playfair Display', serif;
+    font-size: large;
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
+    background-image: url('../img/menu-background.jpeg');
+    background-size: cover;
+
 }
 
 .content {
@@ -15,12 +19,20 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#hero {
-    text-align: center;
-    padding: 100px 0;
-    background-image: url('../img/al-pastor.jpg');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
+.about-us {
+    background-color: rgba(235, 199, 199, 0.8);
 }
 
+.about-us section {
+  max-width: 600px; /* Limit the width of the sections */
+  margin: 0 auto 20px; /* Center the sections horizontally and add some space between them */
+}
+
+.about-us h2 {
+    text-align: center;
+  margin-bottom: 10px; /* Add some space below the headings */
+}
+
+.about-us p {
+  margin: 5px 0; /* Add some space around the paragraphs */
+}

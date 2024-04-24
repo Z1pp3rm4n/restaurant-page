@@ -16,8 +16,7 @@ def about():
 @main.route('/profile')
 @login_required
 def profile():
-    return current_user.name 
-
+    return render_template("profile.html", user=current_user)
 
 @main.route('/menu')
 def menu():
@@ -47,3 +46,14 @@ def reservation_post():
     except Exception as e:
         print(e)
         return "Issue creating reservation"
+    
+@main.route('/order')
+@login_required
+def order():
+    return "order"
+
+@main.route("/order", methods=["POST"])
+@login_required
+def order_post():
+
+    return ""

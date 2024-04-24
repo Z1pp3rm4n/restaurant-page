@@ -1,0 +1,23 @@
+#hero {
+    font-size: larger;
+    font-weight: bolder;
+    text-align: center;
+    padding: 100px 0;
+    background-size: cover;
+    background-position: center;
+    color: #402d2d;
+}
+
+#opening-hours,
+#address {
+  text-align: center;
+  margin-bottom: 20px; /* Add some space between sections */
+}
+
+.index-container{
+    background-color: rgba(235, 199, 199, 0.8);
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+

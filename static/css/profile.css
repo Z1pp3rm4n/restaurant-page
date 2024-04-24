@@ -1,0 +1,39 @@
+.profile-container {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.user-profile {
+    background-color: rgba(235, 199, 199, 0.8);
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+}
+
+.user-information, .user-reservations {
+    margin-bottom: 20px;
+}
+
+.user-reservations table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-reservations th, .user-reservations td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.user-reservations th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+.user-information.label {
+    font-weight: bold;
+    margin-right: 5px;
+}

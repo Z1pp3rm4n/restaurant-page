@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Pickup Order - Poco Taco</title>
+{% endblock %}
+
+{% block body %}
+<div class="order-container">
+    <h1>Order</h1>
+    {% for dish_group in dish_groups %}
+    <div class="dish-group">
+        <h2>{{dish_group.name}}</h2>
+        <ul>
+            {% for dish in dish_group.dishes %}
+            <li>
+                <span class="name">{{ dish.name }}</span>
+                <span class="price">${{dish.price}}</span>
+                <span class="id"></span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+

@@ -5,6 +5,13 @@ from models import db, User, Reservation
 
 auth = Blueprint('auth', __name__)
 
+def redirect_dest(fallback):
+    dest = request.args.get('next')
+    if dest:
+        redirect(dest)
+    else:
+        redirect(fallback)
+
 @auth.route('/login')
 def login():
     return render_template('login.html')
@@ -29,10 +36,11 @@ def signup_post():
     try:
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for("main.index"))#TODO
+        flash(f"Sign Up successful! Welcome {new_user.name}. Please log in to continue.", "success")
+        return redirect(url_for("main.index"))
     except Exception as e:
-            print(e)
-            return "Issue signing up"
+        print(e)
+        return "Issue signing up"
 
 @auth.route('/login', methods=['POST'])
 def login_post():
@@ -49,6 +57,7 @@ def login_post():
 
     # user has the right credentials
     login_user(user, remember=remember)
+    flash(f"Login Successful! Welcome back {user.name}","success")
     return redirect(url_for("main.index"))
 
 @auth.route('/logout')

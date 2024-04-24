@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/reservation.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/flash_messages.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css')}}">
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </head>
@@ -52,7 +57,15 @@
             </li>
             {% endif %}
         </ul>
-    </nav>    
+    </nav>
+    <div class="opaque-background"></div>
+    {% with messages = get_flashed_messages(with_categories=true) %}    
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="message {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+    {% endwith %}    
     {% block body %}{% endblock %}
     <footer>
         <div class="footer-container">

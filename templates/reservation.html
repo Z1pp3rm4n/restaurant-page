@@ -6,15 +6,6 @@
 
 {% block body %}
 
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<div class="message-container">
-    <div class="notification is-success">
-        {{ messages[0] }}
-    </div>
-</div>
-{% endif %}
-{% endwith %}
 <form class="reservation" action="/reservation" method="POST">
     <h1> Reservation</h1>
 

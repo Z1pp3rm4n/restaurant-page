@@ -9,14 +9,16 @@
   padding: 10px 20px;
   margin-bottom: 10px;
   border-radius: 5px;
-}
-
-.error {
   background-color: #ffcccc;
   color: #cc0000;
 }
 
-.success {
+.message.error {
+  background-color: #ffcccc;
+  color: #cc0000;
+}
+
+.message.success {
   background-color: #ccffcc;
   color: #009900;
 }
